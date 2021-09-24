@@ -2,12 +2,92 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/src/css/style.css">
     <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
   </head>
   <body>
+    <section class="modal modal--opened">
+        <div class="modal__order">
+            <div class="product-images">
+                <div class="product-images__main">
+                    <img src="/src/assets/img/products/hoody-blue-big.png" alt="Толстовка синего цвета" width="330" height="330">
+                </div>
+                <ul class="product-images__list">
+                    <li class="product-images__item">
+                        <img src="/src/assets/img/products/hoody-beige-icon.png" alt="Толстовка бежевого цвета" width="50" height="50">
+                    </li>
+                    <li class="product-images__item product-images__item--active">
+                        <img src="/src/assets/img/products/hoody-blue-icon.png" alt="Толстовка синего цвета" width="50" height="50">
+                    </li>
+                    <li class="product-images__item">
+                        <img src="/src/assets/img/products/hoody-gray-icon.png" alt="Толстовка серого цвета" width="50" height="50">
+                    </li>
+                </ul>
+            </div>
+            <div class="choice-area">
+                <div class="choice-area__info info">
+                    <h2 class="info__title">Футболка "Эволюционируй или сдохни"</h2>
+                    <p class="info__points">100 баллов</p>
+                    <button class="button button--modal-order" type="submit" form="order-options">Заказать</button>
+                    <div class="info__balance balance">
+                        <p class="balance__title">Твой баланс:</p>
+                        <span class="balance__total">3 945 баллов</span>
+                    </div>
+                </div>
+                <form class="choice-area__form form" action="" method="POST" id="order-options">
+                    <fieldset class="form-fieldset form-fieldset--color">
+                        <legend class="form-fieldset__title">Цвета:</legend>
+                        <ul class="options options--color">
+                            <li class="options__item options__item--checked options__item--color">
+                                <input class="radio-color" type="radio" id="color-blue" name="color" value="blue" checked>
+                                <label for="color-blue">Синий</label>
+                            </li>
+                            <li class="options__item options__item--color">
+                                <input class="radio-color" type="radio" id="color-beige" name="color" value="beige">
+                                <label for="color-beige">Бежевый</label>
+                            </li>
+                            <li class="options__item options__item--color">
+                                <input class="radio-color" type="radio" id="color-gray" name="color" value="gray">
+                                <label for="color-gray">Серый</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                    <fieldset class="form-fieldset form-fieldset--size">
+                        <legend class="form-fieldset__title">Размер:</legend>
+                        <ul class="options options--size">
+                            <li class="options__item options__item--checked options__item--size">
+                                <input class="radio-size" type="radio" id="size-s" name="size" value="S" checked>
+                                <label for="size-s">S</label>
+                            </li>
+                            <li class="options__item options__item--size">
+                                <input class="radio-size" type="radio" id="size-m" name="size" value="M">
+                                <label for="size-m">M</label>
+                            </li>
+                            <li class="options__item options__item--size">
+                                <input class="radio-size" type="radio" id="size-l" name="size" value="L">
+                                <label for="size-l">L</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </form>
+                <dl class="choice-area__details details">
+                    <dt class="details__title">Детали:</dt>
+                    <dd class="details__subtitle">Брендированная толстовка от Qazaq Republic. Материал: Хлопок 80%, Вискоза 20%</dd>
+
+                    <dt class="details__title">Как выбрать размер:</dt>
+                    <dd class="details__subtitle">Написать дяде Рику для уточнения.</dd>
+                </dl>
+            </div>
+            <button class="modal-close" type="button" aria-label="Закрыть"></button>
+        </div>
+    </section>
+    <!--
     <div id="app"></div>
-    <script type="module" src="/src/js/main.js"></script>
+    <script type="module" src="/src/js/main.js"></script> -->
   </body>
 </html>
