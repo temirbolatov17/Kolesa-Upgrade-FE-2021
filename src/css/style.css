@@ -1,10 +1,13 @@
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+:root {
+    --black-primary: #1c1819;
+    --white: #fff;
+    --blue-primary: #2a81dd;
+    --light-cyan: #f0fafd;
+    --gray: #888b94;
+    --blue-darkest: #00458a;
+    --beige: #efe8d8;
+    --gray-lightest: #d4d4da;
+    --blue--lighter: #d6ecfb;
 }
 
 * {
@@ -12,7 +15,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
-    color: #1c1819;
+    color: var(--black-primary);
 }
 
 /* Modal */
@@ -30,9 +33,9 @@
 .modal__order {
     max-width: 1039px;
     min-height: 508px;
-    padding: 56px 56px 56px 56px;
+    padding: 56px;
     border-radius: 16px;
-    background-color: #fff;
+    background-color: var(--white);
     display: grid;
     position: relative;
     grid-template-columns: 330px 1fr;
@@ -41,7 +44,7 @@
 /* Product-images */
 
 .product-images__main {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 .product-images__list {
@@ -55,14 +58,13 @@
 .product-images__item {
     width: 52px;
     height: 52px;
-    margin-right: 8px;
-    margin-bottom: 8px;
+    margin: 2px 4px;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 .product-images__item--active {
-    border: 1px solid #2a81dd;
-    border-radius: 8px;
+    border: 1px solid var(--blue-primary);
 }
 
 /* Info */
@@ -77,8 +79,7 @@
     font-weight: 400;
     font-size: 20px;
     line-height: 32px;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin: 8px 0;
     grid-column: 1 / -1;
 }
 
@@ -102,7 +103,7 @@
 /* Balance */
 
 .balance {
-    background-color: #f0fafd;
+    background-color: var(--light-cyan);
     border-radius: 16px;
     position: relative;
     margin-top: 8px;
@@ -121,7 +122,7 @@
 .balance__title {
     font-size: 14px;
     line-height: 24px;
-    color: #888b94;
+    color: var(--gray);
     margin-bottom: 4px;
 }
 
@@ -133,10 +134,10 @@
 /* Button */
 
 .button {
-    background-color: #2a81dd;
+    background-color: var(--blue-primary);
     border: none;
     border-radius: 8px;
-    color: #fff;
+    color: var(--white);
     cursor: pointer;
 }
 
@@ -189,9 +190,9 @@
     margin-right: 8px;
     padding: 10px 8px 10px 39px;
     position: relative;
-    color: #2a81dd;
+    color: var(--blue-primary);
     border: 1px solid rgba(28, 24, 25, 0.1);
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
@@ -203,23 +204,19 @@
     position: absolute;
     top: 8px;
     left: 8px;
-    background-color: #00458a;
     border-radius: 4px;
 }
 
-.options__item--color:nth-child(2) .radio-color + label::before {
-    background-color: #efe8d8;
+.options__item--blue .radio-color + label::before {
+    background-color: var(--blue-darkest);
 }
 
-.options__item--color:nth-child(3) .radio-color + label::before {
-    background-color: #d4d4da;
+.options__item--beige .radio-color + label::before {
+    background-color: var(--beige);
 }
 
-.radio-color:checked + label {
-    background-color: #d6ecfb;
-    border-radius: 4px;
-    color: #1c1819;
-    border: 1px solid rgba(28, 24, 25, 0);
+.options__item--gray .radio-color + label::before {
+    background-color: var(--gray-lightest);
 }
 
 /* Radio size */
@@ -233,11 +230,11 @@
 .radio-size + label {
     font-size: 16px;
     margin-right: 8px;
-    padding: 10px 16px 10px 16px;
+    padding: 10px 16px;
     position: relative;
-    color: #2a81dd;
+    color: var(--blue-primary);
     border: 1px solid rgba(28, 24, 25, 0.1);
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
@@ -249,14 +246,18 @@
     left: 8px;
 }
 
-.radio-size:checked + label {
-    background-color: #d6ecfb;
-    border-radius: 4px;
-    color: #1c1819;
+.radio-size:checked + label,
+.radio-color:checked + label {
+    background-color: var(--blue--lighter);
+    color: var(--black-primary);
     border: 1px solid rgba(28, 24, 25, 0);
 }
 
 /* Details */
+
+.details:not(:last-child) {
+    margin-bottom: 24px;
+}
 
 .details__title {
     font-size: 14px;
@@ -270,9 +271,7 @@
     margin-bottom: 10px;
 }
 
-.details__subtitle:nth-of-type(1) {
-    margin-bottom: 24px;
-}
+/* modal close icon */
 
 .modal-close {
     position: absolute;
@@ -282,7 +281,7 @@
     border: none;
     width: 19px;
     height: 19px;
-    background-image: url(/src/assets/img/icons/close-icon.svg);
+    background-image: url(../src/assets/img/icons/close-icon.svg);
     background-position: 0 0;
     background-repeat: no-repeat;
     background-color: transparent;

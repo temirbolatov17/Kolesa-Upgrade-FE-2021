@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/src/css/style.css">
     <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,19 +38,19 @@
                         <span class="balance__total">3 945 баллов</span>
                     </div>
                 </div>
-                <form class="choice-area__form form" action="" method="POST" id="order-options">
+                <form class="choice-area__form form" action="#" method="POST" id="order-options">
                     <fieldset class="form-fieldset form-fieldset--color">
                         <legend class="form-fieldset__title">Цвета:</legend>
                         <ul class="options options--color">
-                            <li class="options__item options__item--checked options__item--color">
+                            <li class="options__item options__item--blue options__item--checked">
                                 <input class="radio-color" type="radio" id="color-blue" name="color" value="blue" checked>
                                 <label for="color-blue">Синий</label>
                             </li>
-                            <li class="options__item options__item--color">
+                            <li class="options__item options__item--beige">
                                 <input class="radio-color" type="radio" id="color-beige" name="color" value="beige">
                                 <label for="color-beige">Бежевый</label>
                             </li>
-                            <li class="options__item options__item--color">
+                            <li class="options__item options__item--gray">
                                 <input class="radio-color" type="radio" id="color-gray" name="color" value="gray">
                                 <label for="color-gray">Серый</label>
                             </li>
@@ -78,7 +77,8 @@
                 <dl class="choice-area__details details">
                     <dt class="details__title">Детали:</dt>
                     <dd class="details__subtitle">Брендированная толстовка от Qazaq Republic. Материал: Хлопок 80%, Вискоза 20%</dd>
-
+                </dl>
+                <dl class="choice-area__details details">
                     <dt class="details__title">Как выбрать размер:</dt>
                     <dd class="details__subtitle">Написать дяде Рику для уточнения.</dd>
                 </dl>
@@ -86,8 +86,6 @@
             <button class="modal-close" type="button" aria-label="Закрыть"></button>
         </div>
     </section>
-    <!--
-    <div id="app"></div>
-    <script type="module" src="/src/js/main.js"></script> -->
+    <script type="module" src="/src/js/main.js"></script>
   </body>
 </html>
