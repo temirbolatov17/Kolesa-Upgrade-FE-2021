@@ -186,9 +186,9 @@
 }
 
 .radio-color + label {
-    font-size: 16px;
+    font-size: 14px;
     margin-right: 8px;
-    padding: 10px 8px 10px 39px;
+    padding: 10px 10px 10px 40px;
     position: relative;
     color: var(--blue-primary);
     border: 1px solid rgba(28, 24, 25, 0.1);
@@ -228,7 +228,7 @@
 }
 
 .radio-size + label {
-    font-size: 16px;
+    font-size: 14px;
     margin-right: 8px;
     padding: 10px 16px;
     position: relative;
@@ -236,6 +236,10 @@
     border: 1px solid rgba(28, 24, 25, 0.1);
     border-radius: 8px;
     cursor: pointer;
+}
+
+.options__item:nth-child(2) .radio-size + label {
+    padding: 10px 13px;
 }
 
 .radio-size + label::before {
