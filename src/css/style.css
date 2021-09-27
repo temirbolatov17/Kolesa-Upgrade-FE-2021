@@ -280,11 +280,11 @@
 .modal-close {
     position: absolute;
     cursor: pointer;
-    top: 30px;
-    right: 30px;
+    top: 24px;
+    right: 24px;
     border: none;
-    width: 19px;
-    height: 19px;
+    width: 32px;
+    height: 32px;
     background-image: url(../src/assets/img/icons/close-icon.svg);
     background-position: 0 0;
     background-repeat: no-repeat;
