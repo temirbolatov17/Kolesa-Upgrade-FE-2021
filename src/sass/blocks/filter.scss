@@ -1,0 +1,42 @@
+.filter {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+
+    &__item {
+        margin-bottom: 22px;
+    }
+
+    &__input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+
+        & + label {
+            font-size: 14px;
+            margin-right: 8px;
+            padding: 6px 20px;
+            position: relative;
+            color: $blue-primary;
+            border: 1px solid rgba(28, 24, 25, 0.1);
+
+            @include border-radius(8px);
+
+            cursor: pointer;
+        }
+
+        & + label::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+        }
+
+        &:checked + label {
+            background-color: $blue--lighter;
+            color: $black-primary;
+            border: 1px solid rgba(28, 24, 25, 0);
+        }
+    }
+}

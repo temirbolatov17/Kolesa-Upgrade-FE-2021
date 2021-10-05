@@ -1,0 +1,55 @@
+.hot-buttons {
+    grid-column: 2 / -1;
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(3, 300px);
+        column-gap: 20px;
+        list-style: none;
+        margin-bottom: 46px;
+    }
+
+    &__button {
+        width: 300px;
+        min-height: 76px;
+        border: none;
+        border-radius: 16px;
+        font-size: 20px;
+        line-height: 32px;
+        font-weight: 600;
+        cursor: pointer;
+
+        &--green {
+            background-color: $payed-green;
+        }
+
+        &--yellow {
+            background-color: $payed-yellow;
+        }
+
+        &--blue {
+            background-color: $payed-blue;
+        }
+
+        & span {
+            @include font-set(30px, 0, 400);
+
+            vertical-align: middle;
+            margin-right: 16px;
+        }
+
+        &:focus {
+            box-shadow: 0 2px 10px rgba(28, 24, 25, 0.1);
+            outline: none;
+        }
+
+        &:hover {
+            box-shadow: 0 2px 10px rgba(28, 24, 25, 0.1);
+            outline: none;
+        }
+
+        &:active {
+            box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2) inset;
+        }
+    }
+}

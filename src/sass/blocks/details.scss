@@ -1,0 +1,15 @@
+.details {
+    &:not(:last-child) {
+        margin-bottom: 24px;
+    }
+
+    &__title {
+        @include font-set(14px, 24px, 600);
+    }
+
+    &__subtitle {
+        @include font-set(14px, 24px, 600);
+
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,25 @@
+.product-images {
+    &__main {
+        margin-bottom: 14px;
+    }
+
+    &__list {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__item {
+        width: 52px;
+        height: 52px;
+        margin: 2px 4px;
+        border-radius: 8px;
+        cursor: pointer;
+
+        &--active {
+            border: 1px solid $blue-primary;
+        }
+    }
+}

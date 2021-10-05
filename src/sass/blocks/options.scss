@@ -1,0 +1,25 @@
+.options {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+
+    &__item {
+        margin-bottom: 34px;
+
+        &--blue .radio-color + label::before {
+            background-color: $blue-darkest;
+        }
+
+        &--beige .radio-color + label::before {
+            background-color: $beige;
+        }
+
+        &--gray .radio-color + label::before {
+            background-color: $gray-lightest;
+        }
+
+        &:nth-child(2) .radio-size + label {
+            padding: 10px 13px;
+        }
+    }
+}

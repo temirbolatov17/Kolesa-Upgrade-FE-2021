@@ -1,0 +1,45 @@
+.support {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+
+    &__button {
+        width: 150px;
+
+        @include font-set(14px, 24px, 400);
+
+        padding: 6px 20px;
+        margin: 12px 0;
+        color: $blue-primary;
+        background-color: $white;
+
+        @include border-radius(8px);
+
+        border: none;
+        cursor: pointer;
+
+        &:focus {
+            color: $red-primary;
+            outline: none;
+        }
+
+        &:hover {
+            color: $red-primary;
+            outline: none;
+        }
+
+        &:active {
+            box-shadow: 0 2px 4px rgba(28, 24, 25, 0.3) inset;
+        }
+    }
+
+    &__questions {
+        margin: 6px 40px;
+
+        & p {
+            @include font-set(14px, 24px, 400);
+
+            color: $white;
+        }
+    }
+}

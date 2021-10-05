@@ -1,0 +1,29 @@
+.balance {
+    background-color: $light-cyan;
+
+    @include border-radius(16px);
+
+    position: relative;
+    margin-top: 8px;
+
+    &__title {
+        @include font-set(14px, 24px, 400);
+
+        color: $gray;
+        margin-bottom: 4px;
+    }
+
+    &__total {
+        @include font-set(14px, 24px, 400);
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        background-image: url(../src/assets/img/icons/bugs-icon.png);
+    }
+}

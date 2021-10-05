@@ -1,0 +1,11 @@
+.social {
+    &__item {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+
+        &:hover path {
+            fill: $red-primary;
+        }
+    }
+}

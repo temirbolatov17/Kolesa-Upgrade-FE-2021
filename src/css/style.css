@@ -488,19 +488,19 @@ body {
     left: -8px;
 }
 
-.nav-link {
+.navigation__link {
     text-decoration: none;
     font-size: 16px;
     line-height: 24px;
 }
 
-.nav-link:hover,
-.nav-link:focus {
+.navigation__link:hover,
+.navigation__link:focus {
     color: var(--red-primary);
     outline: none;
 }
 
-.nav-link:active {
+.navigation__link:active {
     color: var(--blue-primary);
 }
 
@@ -655,7 +655,7 @@ body {
     display: block;
 }
 
-.badge {
+.card__badge {
     position: absolute;
     bottom: 16px;
     left: 20px;
@@ -667,7 +667,7 @@ body {
     font-size: 13px;
 }
 
-.badge--disabled {
+.card__badge--disabled {
     display: none;
 }
 
@@ -733,13 +733,13 @@ body {
     padding-bottom: 20px;
 }
 
-.copyright {
+.footer__copyright {
     color: var(--white);
     line-height: 24px;
     margin-bottom: 8px;
 }
 
-.social {
+.footer__social {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
