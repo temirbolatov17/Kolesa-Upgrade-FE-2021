@@ -1,8 +1,6 @@
 .balance {
     background-color: $light-cyan;
-
-    @include border-radius(16px);
-
+    border-radius: 16px;
     position: relative;
     margin-top: 8px;
 

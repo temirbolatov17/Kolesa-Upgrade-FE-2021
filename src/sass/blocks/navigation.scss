@@ -12,9 +12,7 @@
                 height: 36px;
                 width: 4px;
                 background-color: $blue-primary;
-
-                @include border-radius(10px);
-
+                border-radius: 10px;
                 top: -6px;
                 left: -8px;
             }

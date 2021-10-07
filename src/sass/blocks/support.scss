@@ -12,9 +12,7 @@
         margin: 12px 0;
         color: $blue-primary;
         background-color: $white;
-
-        @include border-radius(8px);
-
+        border-radius: 8px;
         border: none;
         cursor: pointer;
 
@@ -29,7 +27,7 @@
         }
 
         &:active {
-            box-shadow: 0 2px 4px rgba(28, 24, 25, 0.3) inset;
+            box-shadow: 0 2px 4px transparentize($black-primary, 0.3) inset;
         }
     }
 

@@ -1,9 +1,7 @@
 .button {
     background-color: $blue-primary;
     border: none;
-
-    @include border-radius(8px);
-
+    border-radius: 8px;
     color: $white;
     cursor: pointer;
 
@@ -26,16 +24,16 @@
     }
 
     &:focus {
-        box-shadow: 0 2px 4px rgba(28, 24, 25, 0.3);
+        box-shadow: 0 2px 4px transparentize($black-primary, 0.3);
         outline: none;
     }
 
     &:hover {
-        box-shadow: 0 2px 4px rgba(28, 24, 25, 0.3);
+        box-shadow: 0 2px 4px transparentize($black-primary, 0.3);
         outline: none;
     }
 
     &:active {
-        box-shadow: 0 2px 4px rgba(28, 24, 25, 0.3) inset;
+        box-shadow: 0 2px 4px transparentize($black-primary, 0.3) inset;
     }
 }

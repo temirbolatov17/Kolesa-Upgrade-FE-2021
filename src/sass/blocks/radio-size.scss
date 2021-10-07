@@ -10,9 +10,7 @@
         position: relative;
         color: $blue-primary;
         border: 1px solid rgba(28, 24, 25, 0.1);
-
-        @include border-radius(8px);
-
+        border-radius: 8px;
         cursor: pointer;
 
         &::before {
@@ -25,7 +23,7 @@
     }
 
     &:checked + label {
-        background-color: $blue--lighter;
+        background-color: $blue-lighter;
         color: $black-primary;
         border: 1px solid rgba(28, 24, 25, 0);
     }
