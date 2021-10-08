@@ -1,0 +1,14 @@
+.promo {
+    grid-column: 2 / -1;
+    width: 940px;
+    height: 335px;
+    border-radius: 8px;
+
+    & img {
+        display: block;
+    }
+
+    &--mb24px {
+        margin-bottom: 24px;
+    }
+}

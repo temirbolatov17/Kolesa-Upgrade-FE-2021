@@ -1,0 +1,45 @@
+.navigation {
+    &__item {
+        margin-bottom: 26px;
+
+        &--active {
+            position: relative;
+
+            &::before {
+                content: '';
+                display: block;
+                position: absolute;
+                height: 36px;
+                width: 4px;
+                background-color: $blue-primary;
+                border-radius: 10px;
+                top: -6px;
+                left: -8px;
+            }
+        }
+
+        &--active a {
+            font-weight: 600;
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+
+        @include font-set(16px, 24px, 400);
+
+        &:focus {
+            color: $red-primary;
+            outline: none;
+        }
+
+        &:hover {
+            color: $red-primary;
+            outline: none;
+        }
+
+        &:active {
+            color: $blue-primary;
+        }
+    }
+}

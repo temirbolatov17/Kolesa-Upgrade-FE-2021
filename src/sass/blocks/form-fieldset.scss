@@ -1,0 +1,11 @@
+.form-fieldset {
+    border: none;
+
+    &__title {
+        @include font-set(14px, 24px, 400);
+
+        font-size: 14px;
+        line-height: 24px;
+        margin-bottom: 16px;
+    }
+}
