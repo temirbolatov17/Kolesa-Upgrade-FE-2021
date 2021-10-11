@@ -23,7 +23,7 @@ data-id="${id}" data-category="${category}">
 </button>
 </li>`;
 
-export const makeProductPopup = (title, img, price, id, details) => `
+export const makeProductPopup = (id, title, img, price, details) => `
 <div class="modal__order js__modal-order" data-id="${id}">
 <div class="product-images">
     <div class="product-images__main">
@@ -44,7 +44,7 @@ export const makeProductPopup = (title, img, price, id, details) => `
 <div class="choice-area">
     <div class="choice-area__info info">
         <h2 class="info__title">${title}</h2>
-        <p class="info__points">${price}</p>
+        <p class="info__points">${price} баллов</p>
         <button class="button button--modal-order" type="submit" form="order-options">Заказать</button>
         <div class="info__balance balance">
             <p class="balance__title">Твой баланс:</p>
@@ -96,6 +96,6 @@ export const makeProductPopup = (title, img, price, id, details) => `
         <dd class="details__subtitle">Написать дяде Рику для уточнения.</dd>
     </dl>
 </div>
-<button class="modal__close" type="button" aria-label="Закрыть"></button>
+<button class="modal__close js__close" type="button" aria-label="Закрыть"></button>
 </div>
 `;

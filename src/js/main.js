@@ -125,27 +125,12 @@ const modal = document.querySelector('.js__modal');
 const modalOpen = () => {
     modal.classList.remove('modal--closed');
     modal.classList.add('modal--opened');
-
-    allProducts.forEach((card) => {
-        const {
-            title, img, price, id, details,
-        } = card;
-        const cardPopup = makeProductPopup(title, img, price, id, details);
-
-        document.querySelector('.js__modal').innerHTML += cardPopup;
-    });
 };
 
 const modalClose = () => {
-    modal.classList.add('modal--closed');
     modal.classList.remove('modal--opened');
+    modal.classList.add('modal--closed');
 };
-
-const closeModal = document.querySelector('.js__close');
-
-closeModal.addEventListener('click', () => {
-    modalClose();
-});
 
 const renderProducts = (products) => {
     const catalog = document.querySelector('.js__catalog');
@@ -161,7 +146,24 @@ const renderProducts = (products) => {
             card.addEventListener('click', () => {
                 const dataId = card.dataset.id;
 
-                modalOpen(dataId); // я вот здесь получаю цифры id, и не знаю как их использовать правильно
+                const currentId = Number(dataId);
+
+                const currentCard = allProducts.find(el => el.id === currentId);
+
+                modal.innerHTML = '';
+
+                modalOpen();
+
+                modal.addEventListener('click', () => {
+                    modalClose();
+                });
+
+                document.querySelector('.js__modal')
+                    .innerHTML += makeProductPopup(currentCard.id,
+                        currentCard.title,
+                        currentCard.img,
+                        currentCard.price,
+                        currentCard.details);
             });
         });
 };
