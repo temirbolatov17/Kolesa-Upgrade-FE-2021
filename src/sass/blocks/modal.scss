@@ -16,6 +16,7 @@
         display: grid;
         position: relative;
         grid-template-columns: 330px 1fr;
+        column-gap: 24px;
     }
 
     &__close {
