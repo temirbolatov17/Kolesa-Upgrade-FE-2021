@@ -1,0 +1,10 @@
+@mixin font-set ($font-size, $line-height, $font-weight) {
+    font-size: $font-size;
+    line-height: $line-height;
+    font-weight: $font-weight;
+}
+
+@mixin link-reset ($color) {
+    color: $color;
+    text-decoration: none;
+}

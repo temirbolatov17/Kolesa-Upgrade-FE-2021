@@ -1,28 +1,443 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <body class="page-body">
+      <div class="wrapper">
+          <header class="page-header container">
+              <div class="page-header__wrapper">
+                  <a class="logo" href="index.html">
+                      <img class="logo__img" src="../src/assets/img/icons/main-logo-icon.svg"
+                      width="215" height="35" alt="Логотип компании Kolesa Group">
+                  </a>
+                  <div class="search-form">
+                      <form class="search-form__item" action="#" method="GET">
+                          <input class="search-form__input"
+                          type="search" placeholder="Поиск" id="search">
+                          <label for="search"></label>
+                      </form>
+                  </div>
+                  <a class="user-area" href="#">
+                      <div class="user-area__avatar">
+                          <img src="../src/assets/img/avatars/rick-sanchez-img.jpg"
+                          alt="Аватар Рика Санчеза">
+                      </div>
+                      <span class="user-area__name">Мортиджан</span>
+                      <p class="user-area__balance">300 баллов</p>
+                  </a>
+              </div>
+          </header>
+          <main class="page-main container">
+              <h1 class="visually-hidden">Kolesa Shop для сотрудников компании</h1>
+              <aside class="site-navigation">
+                  <nav class="navigation">
+                      <ul class="navigation__list"  style="list-style: none;">
+                          <li class="navigation__item" >
+                              <a class="navigation__link" href="#">Оргсхема</a>
+                          </li>
+                          <li class="navigation__item">
+                              <a class="navigation__link" href="#">Kolesa Team</a>
+                          </li>
+                          <li class="navigation__item navigation__item--active">
+                              <a class="navigation__link" href="#">Kolesa Shop</a>
+                          </li>
+                          <li class="navigation__item">
+                              <a class="navigation__link" href="#">Картина компании</a>
+                          </li>
+                          <li class="navigation__item">
+                              <a class="navigation__link" href="#">Новости</a>
+                          </li>
+                          <li class="navigation__item">
+                              <a class="navigation__link" href="#">Education</a>
+                          </li>
+                          <li class="navigation__item">
+                              <a class="navigation__link" href="#">Guidlines</a>
+                          </li>
+                          <li class="navigation__item">
+                              <a class="navigation__link" href="#">Библиотека</a>
+                          </li>
+                          <li class="navigation__item">
+                              <a class="navigation__link" href="#">FAQ</a>
+                          </li>
+                      </ul>
+                  </nav>
+              </aside>
+              <section class="promo promo--mb24px">
+                  <img class="promo__img" src="../src/assets/img/promo/promo-desktop.jpg"
+                  width="940" height="335" alt="Промо летней распродажи">
+              </section>
+              <section class="hot-buttons">
+                  <ul class="hot-buttons__list">
+                      <li class="hot-button__item">
+                          <button class="hot-buttons__button hot-buttons__button--green">
+                            <span>➕</span>
+                            Получить баллы
+                          </button>
+                      </li>
+                      <li class="hot-button__item">
+                          <button class="hot-buttons__button hot-buttons__button--yellow">
+                            <span>❓</span>
+                            Как получить баллы
+                          </button>
+                      </li>
+                      <li class="hot-button__item">
+                          <button class="hot-buttons__button hot-buttons__button--blue">
+                            <span>🎁</span>
+                            Получить баллы
+                          </button>
+                      </li>
+                  </ul>
+              </section>
+              <section class="main-catalog">
+                  <form class="catalog-filter" action="#" method="GET">
+                      <legend class="visually-hidden">Сортировка товара</legend>
+                      <ul class="filter">
+                          <li class="filter__item"
+                          :class="{ 'filter__item--checked': tab.value === activeTab }"
+                          v-for="tab in tabs" :key="tab.value">
+                              <input class="filter__input js__filter-button" type="radio"
+                              :id="tab.value" name="products-sort"
+                              :value="tab.value" v-model="selectedValue" checked>
+                              <label :for="tab.value" @click="sortTabs(selectedValue)">
+                              {{ tab.title }}</label>
+                          </li>
+                      </ul>
+                  </form>
+                  <ul class="product-list js__catalog">
+                    <li class="product-list__item card" v-for="product in allProducts"
+                      :key="product.id" @click="openModal">
+                      <div class="card__image">
+                        <img :src="require(`@/assets/img/products/${product.fileName}.jpg`)"
+                        width="300" height="300" alt="">
+                        <span v-if="product.isNew" class="card__badge">new</span>
+                      </div>
+                      <div class="card__description description">
+                        <span class="description__price">{{ product.price }} баллов </span>
+                        <h3 class="description__title">{{ product.title }}</h3>
+                        <p class="description__hint">Размеры S/M/L </p>
+                      </div>
+                      <button class="button button--card-order" type="button"
+                      >Заказать</button>
+                    </li>
+                  </ul>
+              </section>
+          </main>
+          <footer class="page-footer">
+              <div class="footer container">
+                  <div class="footer__social">
+                      <p class="footer__copyright">© Kolesa Group</p>
+                      <ul class="footer__social-list social">
+                          <li class="social__item">
+                              <span class="visually-hidden">instagram</span>
+                              <a href="https://www.instagram.com/kolesagroup" target=»_blank»>
+                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M16.8047 6.11576C16.2077 6.11576 15.7247 6.59876
+                                      15.7247 7.19576C15.7247 7.79176 16.2077 8.27576
+                                      16.8047 8.27576C17.4007 8.27576 17.8837 7.79176
+                                      17.8837 7.19576C17.8837 6.59876 17.4007 6.11576
+                                      16.8047 6.11576ZM19.3262 15.6368C19.2862 16.5138
+                                      19.1392 16.9908 19.0152 17.3078C18.8522 17.7278
+                                      18.6582 18.0278 18.3432 18.3428C18.0272 18.6578
+                                      17.7282 18.8528 17.3072 19.0158C16.9912 19.1388
+                                      16.5142 19.2858 15.6372 19.3258C14.6872 19.3688
+                                      14.4032 19.3788 12.0002 19.3788C9.59724 19.3788
+                                      9.31224 19.3688 8.36324 19.3258C7.48524 19.2858
+                                      7.00924 19.1388 6.69224 19.0158C6.27124 18.8528
+                                      5.97224 18.6578 5.65724 18.3428C5.34224 18.0278
+                                      5.14724 17.7278 4.98424 17.3078C4.86024 16.9908
+                                      4.71424 16.5138 4.67424 15.6368C4.63124 14.6878
+                                      4.62224 14.4038 4.62224 11.9998C4.62224 9.59676
+                                      4.63124 9.31176 4.67424 8.36376C4.71424 7.48576
+                                      4.86024 7.00976 4.98424 6.69176C5.14724 6.27176
+                                      5.34224 5.97176 5.65724 5.65776C5.97224 5.34276
+                                      6.27124 5.14776 6.69224 4.98376C7.00924 4.86076
+                                      7.48524 4.71376 8.36324 4.67376C9.31224 4.63076
+                                      9.59724 4.62176 12.0002 4.62176C14.4032 4.62176
+                                      14.6872 4.63076 15.6372 4.67376C16.5142 4.71376
+                                      16.9912 4.86076 17.3072 4.98376C17.7282 5.14776
+                                      18.0272 5.34276 18.3432 5.65776C18.6582 5.97176
+                                      18.8522 6.27176 19.0152 6.69176C19.1392 7.00976
+                                      19.2862 7.48576 19.3262 8.36376C19.3692 9.31176
+                                      19.3782 9.59676 19.3782 11.9998C19.3782 14.4038
+                                      19.3692 14.6878 19.3262 15.6368ZM12 15.0001C10.343
+                                      15.0001 9.00004 13.6571 9.00004 12.0001C9.00004
+                                      10.3431 10.343 9.00006 12 9.00006C13.657 9.00006
+                                      15 10.3431 15 12.0001C15 13.6571 13.657 15.0001
+                                      12 15.0001ZM12 7.37806C9.44704 7.37806 7.37804
+                                      9.44706 7.37804 12.0001C7.37804 14.5521 9.44704
+                                      16.6221 12 16.6221C14.553 16.6221 16.622 14.5521
+                                      16.622 12.0001C16.622 9.44706 14.553 7.37806
+                                      12 7.37806ZM20.9462 8.28876C20.9022 7.33176
+                                      20.7502 6.67776 20.5272 6.10476C20.2982 5.51276
+                                      19.9902 5.01076 19.4892 4.51076C18.9892 4.01076
+                                      18.4872 3.70276 17.8952 3.47276C17.3232 3.24976
+                                      16.6692 3.09776 15.7112 3.05376C14.7512 3.01076
+                                      14.4442 2.99976 12.0002 2.99976C9.55524 2.99976
+                                      9.24924 3.01076 8.28924 3.05376C7.33124 3.09776
+                                      6.67724 3.24976 6.10424 3.47276C5.51324 3.70276
+                                      5.01124 4.01076 4.51124 4.51076C4.01024 5.01076
+                                      3.70224 5.51276 3.47224 6.10476C3.25024 6.67776
+                                      3.09724 7.33176 3.05424 8.28876C3.01124 9.24876
+                                      3.00024 9.55576 3.00024 11.9998C3.00024 14.4448
+                                      3.01124 14.7508 3.05424 15.7108C3.09724 16.6688
+                                      3.25024 17.3228 3.47224 17.8958C3.70224 18.4878
+                                      4.01024 18.9898 4.51124 19.4898C5.01124 19.9898
+                                      5.51324 20.2978 6.10424 20.5278C6.67724 20.7498
+                                      7.33124 20.9028 8.28924 20.9458C9.24924 20.9898
+                                      9.55524 20.9998 12.0002 20.9998C14.4442 20.9998
+                                      14.7512 20.9898 15.7112 20.9458C16.6692 20.9028
+                                      17.3232 20.7498 17.8952 20.5278C18.4872 20.2978
+                                      18.9892 19.9898 19.4892 19.4898C19.9902 18.9898
+                                      20.2982 18.4878 20.5272 17.8958C20.7502 17.3228
+                                      20.9022 16.6688 20.9462 15.7108C20.9892 14.7508
+                                      21.0002 14.4448 21.0002 11.9998C21.0002 9.55576
+                                      20.9892 9.24876 20.9462 8.28876Z" fill="white"/>
+                                  </svg>
+                              </a>
+                          </li>
+                          <li class="social__item">
+                              <span class="visually-hidden">YouTube</span>
+                              <a href="https://www.youtube.com/channel/UC6o6waSdIvmIdvy7qTqxY9A/featured" target=»_blank»>
+                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M10.1592 15.2438V9.75676L14.8642
+                                      12.4998L10.1592 15.2438ZM20.6242 8.02976C20.4172
+                                      7.23076 19.8072 6.60176 19.0332 6.38876C17.6292
+                                      5.99976 12.0002 5.99976 12.0002 5.99976C12.0002
+                                      5.99976 6.37124 5.99976 4.96724 6.38876C4.19324
+                                      6.60176 3.58324 7.23076 3.37624 8.02976C3.00024
+                                      9.47776 3.00024 12.4998 3.00024 12.4998C3.00024
+                                      12.4998 3.00024 15.5218 3.37624 16.9708C3.58324
+                                      17.7688 4.19324 18.3988 4.96724 18.6118C6.37124
+                                      18.9998 12.0002 18.9998 12.0002 18.9998C12.0002
+                                      18.9998 17.6292 18.9998 19.0332 18.6118C19.8072
+                                      18.3988 20.4172 17.7688 20.6242 16.9708C21.0002
+                                      15.5218 21.0002 12.4998 21.0002 12.4998C21.0002
+                                      12.4998 21.0002 9.47776 20.6242 8.02976Z"
+                                      fill="white"/>
+                                  </svg>
+                              </a>
+                          </li>
+                          <li class="social__item">
+                              <span class="visually-hidden">vk</span>
+                              <a href="https://vk.com/kolesakrishamarket" target=»_blank»>
+                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M20.5869 7.74463C20.7119 7.31563 20.5869
+                                      6.99963 19.9919 6.99963H18.0229C17.5219
+                                      6.99963 17.2909 7.27263 17.1659
+                                      7.57363C17.1659 7.57363 16.1639
+                                      10.0846 14.7459 11.7166C14.2869
+                                      12.1886 14.0779 12.3386 13.8279
+                                      12.3386C13.7019 12.3386 13.5209
+                                      12.1886 13.5209 11.7596V7.74463C13.5209
+                                      7.22963 13.3759 6.99963 12.9589
+                                      6.99963H9.86388C9.55088 6.99963
+                                      9.36288 7.23963 9.36288 7.46563C9.36288
+                                      7.95363 10.0719 8.06663 10.1459
+                                      9.44063V12.4246C10.1459 13.0786
+                                      10.0309 13.1976 9.77988 13.1976C9.11288
+                                      13.1976 7.48888 10.6746 6.52588
+                                      7.78763C6.33688 7.22663 6.14788 6.99963
+                                      5.64488 6.99963H3.67488C3.11188 6.99963
+                                      2.99988 7.27263 2.99988 7.57363C2.99988
+                                      8.10963 3.66788 10.7716 6.10788 14.2926C7.73588
+                                      16.6966 10.0279 17.9996 12.1149 17.9996C13.3659
+                                      17.9996 13.5209 17.7106 13.5209 17.2116V15.3946C13.5209
+                                      14.8156 13.6399 14.7006 14.0359 14.7006C14.3279 14.7006
+                                      14.8289 14.8506 15.9969 16.0096C17.3329
+                                      17.3836 17.5529 17.9996 18.3039
+                                      17.9996H20.2729C20.8359 17.9996
+                                      21.1169 17.7106 20.9549 17.1396C20.7769
+                                      16.5696 20.1389 15.7436 19.2939
+                                      14.7646C18.8349 14.2066 18.1459
+                                      13.6056 17.9379 13.3046C17.6459
+                                      12.9186 17.7289 12.7466 17.9379
+                                      12.4036C17.9379 12.4036 20.3369
+                                      8.92563 20.5869 7.74463Z" fill="white"/>
+                                  </svg>
+                              </a>
+                          </li>
+                      </ul>
+                  </div>
+                  <div class="footer__support support">
+                      <div class="support__questions">
+                          <p>Есть идеи что улучшить?</p>
+                          <p>Не знаешь, с кем решить проблему?</p>
+                      </div>
+                      <button class="support__button">Написать</button>
+                  </div>
+              </div>
+          </footer>
+          <section class="modal" v-if="isModalOpen">
+              <div class="modal__order js__modal-order">
+                  <div class="product-images">
+                      <div class="product-images__main">
+                          <img src="../src/assets/img/products/hoody-blue-big.jpg"
+                          alt="Толстовка синего цвета" width="330" height="330">
+                      </div>
+                      <ul class="product-images__list">
+                          <li class="product-images__item">
+                              <img src="../src/assets/img/products/hoody-beige-icon.jpg"
+                              alt="Толстовка бежевого цвета" width="50" height="50">
+                          </li>
+                          <li class="product-images__item product-images__item--active">
+                              <img src="../src/assets/img/products/hoody-blue-icon.jpg"
+                              alt="Толстовка синего цвета" width="50" height="50">
+                          </li>
+                          <li class="product-images__item">
+                              <img src="../src/assets/img/products/hoody-gray-icon.jpg"
+                              alt="Толстовка серого цвета" width="50" height="50">
+                          </li>
+                      </ul>
+                  </div>
+                  <div class="choice-area">
+                      <div class="choice-area__info info">
+                          <h2 class="info__title">Футболка "Эволюционируй или сдохни"</h2>
+                          <p class="info__points">100 баллов</p>
+                          <button class="button button--modal-order"
+                          type="submit" form="order-options">Заказать</button>
+                          <div class="info__balance balance">
+                              <p class="balance__title">Твой баланс:</p>
+                              <span class="balance__total">3 945 баллов</span>
+                          </div>
+                      </div>
+                      <form class="choice-area__form form"
+                      action="#" method="POST" id="order-options">
+                          <fieldset class="form-fieldset form-fieldset--color">
+                              <legend class="form-fieldset__title">Цвета:</legend>
+                              <ul class="options options--color">
+                                  <li class="options__item options__item--blue
+                                  options__item--checked">
+                                      <input class="radio-color" type="radio"
+                                      id="color-blue" name="color" value="blue" checked>
+                                      <label for="color-blue">Синий</label>
+                                  </li>
+                                  <li class="options__item options__item--beige">
+                                      <input class="radio-color" type="radio"
+                                      id="color-beige" name="color" value="beige">
+                                      <label for="color-beige">Бежевый</label>
+                                  </li>
+                                  <li class="options__item options__item--gray">
+                                      <input class="radio-color" type="radio"
+                                      id="color-gray" name="color" value="gray">
+                                      <label for="color-gray">Серый</label>
+                                  </li>
+                              </ul>
+                          </fieldset>
+                          <fieldset class="form-fieldset form-fieldset--size">
+                              <legend class="form-fieldset__title">Размер:</legend>
+                              <ul class="options options--size">
+                                  <li class="options__item options__item--checked
+                                  options__item--size">
+                                      <input class="radio-size" type="radio"
+                                      id="size-s" name="size" value="S" checked>
+                                      <label for="size-s">S</label>
+                                  </li>
+                                  <li class="options__item options__item--size">
+                                      <input class="radio-size" type="radio"
+                                      id="size-m" name="size" value="M">
+                                      <label for="size-m">M</label>
+                                  </li>
+                                  <li class="options__item options__item--size">
+                                      <input class="radio-size" type="radio"
+                                      id="size-l" name="size" value="L">
+                                      <label for="size-l">L</label>
+                                  </li>
+                              </ul>
+                          </fieldset>
+                      </form>
+                      <dl class="choice-area__details details">
+                          <dt class="details__title">Детали:</dt>
+                          <dd class="details__subtitle">
+                            Брендированная толстовка от Qazaq Republic.
+                            Материал: Хлопок 80%, Вискоза 20%
+                          </dd>
+                      </dl>
+                      <dl class="choice-area__details details">
+                          <dt class="details__title">Как выбрать размер:</dt>
+                          <dd class="details__subtitle">Написать дяде Рику для уточнения.</dd>
+                      </dl>
+                  </div>
+                  <button class="modal__close js__close"
+                  type="button" aria-label="Закрыть" @click="closeModal"></button>
+              </div>
+          </section>
+      </div>
+  </body>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import clothes from './clothes';
+import accessories from './accessories';
+
+const allProducts = clothes.concat(accessories).sort((product) => (product.isNew ? -1 : 1));
+const newClothes = clothes.sort((product) => (product.isNew ? -1 : 1));
+const newAccessories = accessories.sort((product) => (product.isNew ? -1 : 1));
+
+console.log(newClothes);
+console.log(newAccessories);
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld,
+  data() {
+    return {
+      tabs: [
+        {
+          title: 'Все товары',
+          isActive: true,
+          value: 'all',
+        },
+        {
+          title: 'Одежда',
+          isActive: false,
+          value: 'clothes',
+        },
+        {
+          title: 'Аксессуары',
+          isActive: false,
+          value: 'accessories',
+        },
+      ],
+      activeTab: 'allProducts',
+      allProducts,
+      isModalOpen: false,
+
+      sortedProducts: [],
+    };
+  },
+
+  computed: {
+    filterProducts() {
+      if (this.sortedProducts.length) {
+        return this.sortedProducts;
+      }
+      return this.allProducts;
+    },
+  },
+  methods: {
+    openModal() {
+      this.isModalOpen = true;
+    },
+    closeModal() {
+      this.isModalOpen = false;
+    },
+    sortTabs(selectedValue) {
+      this.activeTab = selectedValue.value;
+      if (selectedValue.value === 'clothes') {
+        this.sortedProducts = newClothes;
+        return;
+      }
+      if (selectedValue.value === 'accessories') {
+        this.sortedProducts = newAccessories;
+        return;
+      }
+      this.sortedProducts = allProducts;
+    },
   },
 };
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import 'components/style.scss';
 </style>
