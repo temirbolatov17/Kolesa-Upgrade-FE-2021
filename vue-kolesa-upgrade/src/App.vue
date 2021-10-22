@@ -91,7 +91,6 @@
                       <legend class="visually-hidden">Сортировка товара</legend>
                       <ul class="filter">
                           <li class="filter__item"
-                          :class="{ 'filter__item--checked': tab.value === activeTab }"
                           v-for="tab in tabs" :key="tab.value">
                               <input class="filter__input js__filter-button" type="radio"
                               :id="tab.value" name="products-sort"
@@ -102,7 +101,7 @@
                       </ul>
                   </form>
                   <ul class="product-list js__catalog">
-                    <li class="product-list__item card" v-for="product in allProducts"
+                    <li class="product-list__item card" v-for="product in sortedProducts"
                       :key="product.id" @click="openModal">
                       <div class="card__image">
                         <img :src="require(`@/assets/img/products/${product.fileName}.jpg`)"
@@ -375,13 +374,11 @@ const allProducts = clothes.concat(accessories).sort((product) => (product.isNew
 const newClothes = clothes.sort((product) => (product.isNew ? -1 : 1));
 const newAccessories = accessories.sort((product) => (product.isNew ? -1 : 1));
 
-console.log(newClothes);
-console.log(newAccessories);
-
 export default {
   name: 'App',
   data() {
     return {
+      selectedValue: 'all',
       tabs: [
         {
           title: 'Все товары',
@@ -399,8 +396,8 @@ export default {
           value: 'accessories',
         },
       ],
-      activeTab: 'allProducts',
       allProducts,
+
       isModalOpen: false,
 
       sortedProducts: [],
@@ -423,14 +420,16 @@ export default {
       this.isModalOpen = false;
     },
     sortTabs(selectedValue) {
-      this.activeTab = selectedValue.value;
-      if (selectedValue.value === 'clothes') {
+      if (selectedValue === 'clothes') {
         this.sortedProducts = newClothes;
         return;
       }
-      if (selectedValue.value === 'accessories') {
+      if (selectedValue === 'accessories') {
         this.sortedProducts = newAccessories;
         return;
+      }
+      if (selectedValue === 'all') {
+        this.sortedProducts = allProducts;
       }
       this.sortedProducts = allProducts;
     },
