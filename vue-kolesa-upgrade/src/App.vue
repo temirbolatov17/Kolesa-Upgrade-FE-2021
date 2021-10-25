@@ -94,8 +94,8 @@
                           v-for="tab in tabs" :key="tab.value">
                               <input class="filter__input js__filter-button" type="radio"
                               :id="tab.value" name="products-sort"
-                              :value="tab.value" v-model="selectedValue" checked>
-                              <label :for="tab.value" @click="sortTabs(selectedValue)">
+                              :value="tab.value" v-model="selectedTab" checked>
+                              <label :for="tab.value" @click="sortTabs(selectedTab)">
                               {{ tab.title }}</label>
                           </li>
                       </ul>
@@ -370,46 +370,49 @@
 import clothes from './clothes';
 import accessories from './accessories';
 
-const allProducts = clothes.concat(accessories).sort((product) => (product.isNew ? -1 : 1));
-const newClothes = clothes.sort((product) => (product.isNew ? -1 : 1));
-const newAccessories = accessories.sort((product) => (product.isNew ? -1 : 1));
+const tabs = [
+  {
+    title: 'Все товары',
+    isActive: true,
+    value: 'all',
+  },
+  {
+    title: 'Одежда',
+    isActive: false,
+    value: 'clothes',
+  },
+  {
+    title: 'Аксессуары',
+    isActive: false,
+    value: 'accessories',
+  },
+];
+
+const allProducts = [...clothes, ...accessories];
 
 export default {
   name: 'App',
   data() {
     return {
-      selectedValue: 'all',
-      tabs: [
-        {
-          title: 'Все товары',
-          isActive: true,
-          value: 'all',
-        },
-        {
-          title: 'Одежда',
-          isActive: false,
-          value: 'clothes',
-        },
-        {
-          title: 'Аксессуары',
-          isActive: false,
-          value: 'accessories',
-        },
-      ],
+      selectedTab: 'all',
+
       allProducts,
 
       isModalOpen: false,
 
-      sortedProducts: [],
+      tabs,
+
     };
   },
 
   computed: {
-    filterProducts() {
-      if (this.sortedProducts.length) {
-        return this.sortedProducts;
-      }
-      return this.allProducts;
+    filteredProducts() {
+      if (this.selectedTab === 'all') return this.allProducts;
+      return this.allProducts.filter((product) => product.category === this.selectedTab);
+    },
+
+    sortedProducts() {
+      return [...this.filteredProducts].sort((product) => (product.isNew ? -1 : 1));
     },
   },
   methods: {
@@ -419,19 +422,8 @@ export default {
     closeModal() {
       this.isModalOpen = false;
     },
-    sortTabs(selectedValue) {
-      if (selectedValue === 'clothes') {
-        this.sortedProducts = newClothes;
-        return;
-      }
-      if (selectedValue === 'accessories') {
-        this.sortedProducts = newAccessories;
-        return;
-      }
-      if (selectedValue === 'all') {
-        this.sortedProducts = allProducts;
-      }
-      this.sortedProducts = allProducts;
+    sortTabs(selectedTab) {
+      this.selectedTab = selectedTab;
     },
   },
 };
