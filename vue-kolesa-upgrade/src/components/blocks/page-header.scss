@@ -1,0 +1,10 @@
+.page-header {
+    &__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        min-height: 48px;
+        margin-top: 32px;
+        margin-bottom: 24px;
+    }
+}

@@ -1,0 +1,39 @@
+.button {
+    background-color: $blue-primary;
+    border: none;
+    border-radius: 8px;
+    color: $white;
+    cursor: pointer;
+
+    &--modal-order {
+        min-height: 36px;
+        width: 134px;
+
+        @include font-set(14px, 24px, 400);
+
+        grid-column: 1 / 2;
+    }
+
+    &--card-order {
+        padding: 10px;
+        margin: 0 16px 16px 16px;
+
+        @include font-set(16px, 24px, 400);
+
+        display: none;
+    }
+
+    &:focus {
+        box-shadow: 0 2px 4px transparentize($black-primary, 0.3);
+        outline: none;
+    }
+
+    &:hover {
+        box-shadow: 0 2px 4px transparentize($black-primary, 0.3);
+        outline: none;
+    }
+
+    &:active {
+        box-shadow: 0 2px 4px transparentize($black-primary, 0.3) inset;
+    }
+}

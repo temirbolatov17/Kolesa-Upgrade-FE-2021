@@ -1,0 +1,25 @@
+.description {
+    padding: 16px 24px 16px 16px;
+
+    &__price {
+        @include font-set(24px, 36px, 600);
+
+        color: $blue-primary;
+        margin-bottom: 8px;
+    }
+
+    &__title {
+        @include font-set(16px, 24px, 600);
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin-bottom: 4px;
+    }
+
+    &__hint {
+        @include font-set(14px, 24px, 400);
+
+        color: gray;
+    }
+}
