@@ -100,8 +100,17 @@ export default {
   },
 
   computed: {
+
+    newClothes() {
+      return this.clothes.map((product) => (product.category === 'clothes'));
+    },
+
+    newAccessories() {
+      return this.accessories.map((product) => (product.category === 'accessories'));
+    },
+
     allProducts() {
-      return { ...this.clothes, ...this.accessories };
+      return [...this.clothes, ...this.accessories];
     },
 
     filteredProducts() {

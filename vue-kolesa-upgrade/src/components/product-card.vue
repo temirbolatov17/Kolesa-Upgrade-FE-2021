@@ -10,7 +10,11 @@
       <div class="card__description description">
         <span class="description__price">{{ product.price }} баллов </span>
         <h3 class="description__title">{{ product.title }}</h3>
-        <p class="description__hint">Размеры {{ product.sizes }} </p>
+        <p class="description__hint">
+          {{
+            product.sizes && item.sizes.length ? `Размеры ${String(item.sizes)}` : ''
+          }}
+        </p>
       </div>
       <button class="button button--card-order" type="button"
       >Заказать</button>
@@ -44,7 +48,7 @@ export default {
 
     filteredProducts() {
       if (this.selectedTab === 'all') return this.allProducts;
-      return this.filter((product) => product.category === this.selectedTab);
+      return this.allProducts.filter((product) => product.category === this.selectedTab);
     },
 
     sortedProducts() {
