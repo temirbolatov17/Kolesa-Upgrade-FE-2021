@@ -33,8 +33,12 @@
               <section class="main-catalog">
                   <tabs  @sorttabs="sortTabs">
                   </tabs>
-
-                  <product-card>
+                  <product-card
+                    v-for="product in sortedProducts"
+                    :key="product.id"
+                    :product="product"
+                    @toggleModalWindow="toggleModalWindow"
+                    @openCard="openCard">
                   </product-card>
               </section>
           </main>
@@ -42,7 +46,10 @@
           <page-footer>
           </page-footer>
 
-          <modal-card :data='modalData' :is-open="isModalOpen" @close="closeModal">
+          <modal-card
+            :data='modalData'
+            :is-open="isModalOpen"
+            @toggleModalWindow="toggleModalWindow">
           </modal-card>
 
       </div>
@@ -101,21 +108,18 @@ export default {
 
   computed: {
 
-    newClothes() {
-      return this.clothes.map((product) => (product.category === 'clothes'));
-    },
-
-    newAccessories() {
-      return this.accessories.map((product) => (product.category === 'accessories'));
-    },
-
     allProducts() {
       return [...this.clothes, ...this.accessories];
     },
 
     filteredProducts() {
-      if (this.selectedTab === 'all') return this.allProducts;
-      return this.allProducts.filter((product) => product.id === this.selectedTab);
+      if (this.selectedTab === 'all') {
+        return this.allProducts;
+      }
+      if (this.selectedTab === 'clothes') {
+        return this.clothes;
+      }
+      return this.accessories;
     },
 
     sortedProducts() {
@@ -124,8 +128,12 @@ export default {
   },
 
   methods: {
+    toggleModalWindow() {
+      this.isModalOpen = !this.isModalOpen;
+    },
+
     openCard(data) {
-      this.openModal();
+      this.toggleModalWindow();
       this.modalData = data;
     },
 

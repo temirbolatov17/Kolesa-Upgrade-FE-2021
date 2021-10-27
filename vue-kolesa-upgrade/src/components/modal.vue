@@ -3,7 +3,7 @@
     <div class="modal__order js__modal-order">
         <div class="product-images">
             <div class="product-images__main">
-                <img src="../assets/img/products/hoody-blue-big.jpg"
+                <img :src="data.mainImage"
                 alt="Толстовка синего цвета" width="330" height="330">
             </div>
             <ul class="product-images__list">
@@ -12,7 +12,7 @@
                     alt="Толстовка бежевого цвета" width="50" height="50">
                 </li>
                 <li class="product-images__item product-images__item--active">
-                    <img src="../assets/img/products/hoody-blue-icon.jpg"
+                    <img :src="data.mainImage"
                     alt="Толстовка синего цвета" width="50" height="50">
                 </li>
                 <li class="product-images__item">
@@ -90,7 +90,7 @@
             </dl>
         </div>
         <button class="modal__close js__close"
-        type="button" aria-label="Закрыть" @close="closeModal"></button>
+        type="button" aria-label="Закрыть" @click="toggleModalWindow"></button>
     </div>
   </section>
 </template>
@@ -110,6 +110,14 @@ export default {
   },
 
   methods: {
+    openModal() {
+      this.isOpen = true;
+    },
+
+    toggleModalWindow() {
+      this.$emit('toggleModalWindow');
+    },
+
     closeModal() {
       this.$emit('close');
     },

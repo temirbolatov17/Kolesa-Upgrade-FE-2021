@@ -5,9 +5,9 @@
           <li class="filter__item"
           v-for="tab in tabs" :key="tab.id">
               <input class="filter__input js__filter-button" type="radio"
-              :id="tab.value" name="products-sort"
+              :id="tab.id" name="products-sort"
               :value="tab.value" v-model="selectedTab" checked>
-              <label :for="tab.value" @click="sortTabs(selectedTab)">
+              <label :for="tab.id" @click="sortTabs(tab.value)">
               {{ tab.title }}</label>
           </li>
       </ul>
@@ -36,7 +36,7 @@ const tabs = [
 export default {
   name: 'tabs',
   props: {
-    sorttabs: String,
+    sorttabs: Array,
   },
   data() {
     return {

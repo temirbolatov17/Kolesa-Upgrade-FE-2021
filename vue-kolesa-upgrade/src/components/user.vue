@@ -31,8 +31,9 @@ export default {
 
   data() {
     return {
-      name: '',
       balance: 0,
+      userAvatar: '',
+      userName: '',
     };
   },
 

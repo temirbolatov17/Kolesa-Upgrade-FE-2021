@@ -1,18 +1,31 @@
 <template>
-  <ul class="product-list js__catalog" v-if="filteredProducts === selectedTab">
-    <li class="product-list__item card" v-for="product in sortedProducts"
-      :key="product.id" @click="openCard(product)">
-      <div class="card__image">
-        <img :src="product.mainImage"
-        width="300" height="300" alt="">
-        <span v-if="product.isNew" class="card__badge">new</span>
-      </div>
+  <ul class="product-list">
+    <li class="product-list__item card"
+      :key="product.id"
+      :data-id="product.id"
+      @click="openCard(product)">
+        <div class="card__image">
+          <img
+          :src="product.mainImage"
+          width="300"
+          height="300"
+          alt="">
+          <span
+          v-if="product.isNew"
+          class="card__badge">
+          new
+          </span>
+        </div>
       <div class="card__description description">
-        <span class="description__price">{{ product.price }} баллов </span>
-        <h3 class="description__title">{{ product.title }}</h3>
+        <span class="description__price">
+          {{ product.price }} баллов
+        </span>
+        <h3 class="description__title">
+          {{ product.title }}
+        </h3>
         <p class="description__hint">
           {{
-            product.sizes && item.sizes.length ? `Размеры ${String(item.sizes)}` : ''
+            product.sizes && product.sizes.length ? `Размеры ${String(product.sizes)}` : ''
           }}
         </p>
       </div>
@@ -27,10 +40,7 @@
 export default {
   name: 'product-card',
   props: {
-    clothes: Array,
-    accessories: Array,
-    allProducts: Array,
-    selectedTab: String,
+    product: Object,
   },
   data() {
     return {
@@ -42,18 +52,15 @@ export default {
       this.isOpen = true;
     },
 
+    openCard(product) {
+      console.log(product);
+      this.$emit('openCard', this.product);
+    },
+
   },
 
   computed: {
 
-    filteredProducts() {
-      if (this.selectedTab === 'all') return this.allProducts;
-      return this.allProducts.filter((product) => product.category === this.selectedTab);
-    },
-
-    sortedProducts() {
-      return [...this.filteredProducts].sort((product) => (product.isNew ? -1 : 1));
-    },
   },
 };
 </script>
