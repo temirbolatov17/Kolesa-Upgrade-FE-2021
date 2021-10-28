@@ -80,8 +80,7 @@
             <dl class="choice-area__details details">
                 <dt class="details__title">Детали:</dt>
                 <dd class="details__subtitle">
-                  Брендированная толстовка от Qazaq Republic.
-                  Материал: Хлопок 80%, Вискоза 20%
+                  {{ data.description }}
                 </dd>
             </dl>
             <dl class="choice-area__details details">

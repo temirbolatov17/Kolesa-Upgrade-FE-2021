@@ -25,7 +25,6 @@ export default {
         this.userName = response.data.name;
         this.balance = response.data.score;
         this.userAvatar = response.data.avatarUrl;
-        this.$emit('getScoreFromUser', this.score);
       });
   },
 
@@ -38,7 +37,6 @@ export default {
   },
 
   computed: {
-
   },
 };
 </script>
