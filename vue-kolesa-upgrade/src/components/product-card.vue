@@ -1,9 +1,5 @@
 <template>
-  <ul class="product-list">
-    <li class="product-list__item card"
-      :key="product.id"
-      :data-id="product.id"
-      @click="openCard(product)">
+    <li class="product-list__item card" @click="openCard()">
         <div class="card__image">
           <img
           :src="product.mainImage"
@@ -23,28 +19,24 @@
         <h3 class="description__title">
           {{ product.title }}
         </h3>
-        <p class="description__hint">
-          {{
-            product.sizes && product.sizes.length ? `Размеры ${String(product.sizes)}` : ''
-          }}
+        <p class="description__hint" v-if="product.sizes && product.sizes.length">
+          Размеры {{String(product.sizes)}}
+        </p>
+        <p class="description__hint" v-else>
+          Размеры не предусмотрены
         </p>
       </div>
       <button class="button button--card-order" type="button"
       >Заказать</button>
     </li>
-  </ul>
 </template>
 
 <script>
 
 export default {
-  name: 'product-card',
+  name: 'Product-card',
   props: {
     product: Object,
-  },
-  data() {
-    return {
-    };
   },
 
   methods: {
@@ -56,11 +48,6 @@ export default {
       console.log(product);
       this.$emit('openCard', this.product);
     },
-
-  },
-
-  computed: {
-
   },
 };
 </script>

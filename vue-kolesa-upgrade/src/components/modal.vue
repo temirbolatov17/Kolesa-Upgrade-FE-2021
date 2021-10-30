@@ -3,7 +3,7 @@
     <div class="modal__order js__modal-order">
         <div class="product-images">
             <div class="product-images__main">
-                <img :src="data.mainImage"
+                <img :src="product.mainImage"
                 alt="Толстовка синего цвета" width="330" height="330">
             </div>
             <ul class="product-images__list">
@@ -12,7 +12,7 @@
                     alt="Толстовка бежевого цвета" width="50" height="50">
                 </li>
                 <li class="product-images__item product-images__item--active">
-                    <img :src="data.mainImage"
+                    <img :src="product.mainImage"
                     alt="Толстовка синего цвета" width="50" height="50">
                 </li>
                 <li class="product-images__item">
@@ -23,8 +23,8 @@
         </div>
         <div class="choice-area">
             <div class="choice-area__info info">
-                <h2 class="info__title">{{ data.title }}</h2>
-                <p class="info__points"> {{ data.price }} баллов</p>
+                <h2 class="info__title">{{ product.title }}</h2>
+                <p class="info__points"> {{ product.price }} баллов</p>
                 <button class="button button--modal-order"
                 type="submit" form="order-options">Заказать</button>
                 <div class="info__balance balance">
@@ -34,7 +34,7 @@
             </div>
             <form class="choice-area__form form"
             action="#" method="POST" id="order-options">
-                <fieldset class="form-fieldset form-fieldset--color">
+                <fieldset class="form-fieldset form-fieldset--color" v-if="product.colors">
                     <legend class="form-fieldset__title">Цвета:</legend>
                     <ul class="options options--color">
                         <li class="options__item options__item--blue
@@ -55,7 +55,7 @@
                         </li>
                     </ul>
                 </fieldset>
-                <fieldset class="form-fieldset form-fieldset--size">
+                <fieldset class="form-fieldset form-fieldset--size" v-if="product.sizes">
                     <legend class="form-fieldset__title">Размер:</legend>
                     <ul class="options options--size">
                         <li class="options__item options__item--checked
@@ -80,7 +80,7 @@
             <dl class="choice-area__details details">
                 <dt class="details__title">Детали:</dt>
                 <dd class="details__subtitle">
-                  {{ data.description }}
+                  {{ product.description }}
                 </dd>
             </dl>
             <dl class="choice-area__details details">
@@ -89,7 +89,7 @@
             </dl>
         </div>
         <button class="modal__close js__close"
-        type="button" aria-label="Закрыть" @click="toggleModalWindow"></button>
+        type="button" aria-label="Закрыть" @click="closeModal"></button>
     </div>
   </section>
 </template>
@@ -99,30 +99,16 @@ export default {
   name: 'Modal',
   props: {
     isOpen: Boolean,
-    data: Object,
-  },
-
-  data() {
-    return {
-
-    };
+    product: Object,
   },
 
   methods: {
-    openModal() {
-      this.isOpen = true;
-    },
-
-    toggleModalWindow() {
-      this.$emit('toggleModalWindow');
-    },
-
     closeModal() {
       this.$emit('close');
     },
 
     order() {
-      this.$emit('order', this.data.cost);
+      this.$emit('order', this.product.cost);
     },
   },
 };

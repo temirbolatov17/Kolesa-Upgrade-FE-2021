@@ -25,11 +25,6 @@
 
 <script>
 export default {
-  name: 'hot-buttons',
-  data() {
-    return {
-
-    };
-  },
+  name: 'Hot-buttons',
 };
 </script>

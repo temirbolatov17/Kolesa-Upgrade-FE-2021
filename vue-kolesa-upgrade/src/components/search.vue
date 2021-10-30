@@ -18,10 +18,5 @@ export default {
   props: {
     searchValue: String,
   },
-  data() {
-    return {
-      search: '',
-    };
-  },
 };
 </script>

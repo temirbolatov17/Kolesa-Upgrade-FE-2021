@@ -13,21 +13,7 @@
 import axios from '../axios';
 
 export default {
-  name: 'user',
-
-  props: {
-
-  },
-
-  mounted() {
-    axios.get('templates/7ZW3y5GAuIge/data')
-      .then((response) => {
-        this.userName = response.data.name;
-        this.balance = response.data.score;
-        this.userAvatar = response.data.avatarUrl;
-      });
-  },
-
+  name: 'User',
   data() {
     return {
       balance: 0,
@@ -36,7 +22,15 @@ export default {
     };
   },
 
-  computed: {
+  mounted() {
+    axios.get('templates/7ZW3y5GAuIge/data')
+      .then((response) => {
+        this.userName = response.data.name;
+        this.balance = response.data.score;
+        this.userAvatar = response.data.avatarUrl;
+      }).catch((err) => {
+        console.log('Data getting error', err);
+      });
   },
 };
 </script>

@@ -19,22 +19,19 @@ const tabs = [
   {
     title: 'Все товары',
     value: 'all',
-    id: 1,
   },
   {
     title: 'Одежда',
     value: 'clothes',
-    id: 2,
   },
   {
     title: 'Аксессуары',
     value: 'accessories',
-    id: 3,
   },
 ];
 
 export default {
-  name: 'tabs',
+  name: 'Tabs',
   props: {
     sorttabs: Array,
   },

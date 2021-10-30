@@ -8,50 +8,46 @@
                       <img class="logo__img" src="../src/assets/img/icons/main-logo-icon.svg"
                       width="215" height="35" alt="Логотип компании Kolesa Group">
                   </a>
-
-                  <search-form :searchValue="search" @setSearch="setSearch">
+                  <search-form
+                    :searchValue="search"
+                    @setSearch="setSearch">
                   </search-form>
-
                   <user-area>
                   </user-area>
-
               </div>
           </header>
           <main class="page-main container">
               <h1 class="visually-hidden">Kolesa Shop для сотрудников компании</h1>
-
               <navigation>
               </navigation>
-
               <section class="promo promo--mb24px">
-                  <img class="promo__img" src="../src/assets/img/promo/promo-desktop.jpg"
+                  <img class="promo__img"
+                  src="../src/assets/img/promo/promo-desktop.jpg"
                   width="940" height="335" alt="Промо летней распродажи">
               </section>
               <hot-buttons>
-
               </hot-buttons>
               <section class="main-catalog">
-                  <tabs  @sorttabs="sortTabs">
+                  <tabs
+                    @sorttabs="sortTabs">
                   </tabs>
-                  <product-card
-                    v-for="product in sortedProducts"
-                    :key="product.id"
-                    :product="product"
-                    @toggleModalWindow="toggleModalWindow"
-                    @openCard="openCard">
-                  </product-card>
+                  <ul class="product-list">
+                    <product-card
+                      v-for="product in sortedProducts"
+                      :key="product.id"
+                      :product="product"
+                      @openCard="openCard">
+                    </product-card>
+                  </ul>
               </section>
           </main>
-
           <page-footer>
           </page-footer>
-
           <modal-card
-            :data='modalData'
+            :product='modalData'
             :is-open="isModalOpen"
-            @toggleModalWindow="toggleModalWindow">
+            @close="closeModal">
           </modal-card>
-
       </div>
   </body>
   </div>
@@ -82,19 +78,6 @@ export default {
     pageFooter,
   },
 
-  mounted() {
-    axios.get('templates/-_RLsEGjof6i/data')
-      .then((response) => {
-        console.log(response.data);
-        this.clothes = response.data;
-      });
-    axios.get('templates/q3OPxRyEcPvP/data')
-      .then((response) => {
-        console.log(response.data);
-        this.accessories = response.data;
-      });
-  },
-
   data() {
     return {
       modalData: {},
@@ -106,20 +89,37 @@ export default {
     };
   },
 
-  computed: {
+  mounted() {
+    axios.get('templates/-_RLsEGjof6i/data')
+      .then((response) => {
+        console.log(response.data);
+        this.clothes = response.data.map((product) => {
+          product.category = 'clothes';
+          return product;
+        });
+      }).catch((err) => {
+        console.log('Data getting error', err);
+      });
+    axios.get('templates/q3OPxRyEcPvP/data')
+      .then((response) => {
+        console.log(response.data);
+        this.accessories = response.data.map((product) => {
+          product.category = 'accessories';
+          return product;
+        });
+      }).catch((err) => {
+        console.log('Data getting error', err);
+      });
+  },
 
+  computed: {
     allProducts() {
       return [...this.clothes, ...this.accessories];
     },
 
     filteredProducts() {
-      if (this.selectedTab === 'all') {
-        return this.allProducts;
-      }
-      if (this.selectedTab === 'clothes') {
-        return this.clothes;
-      }
-      return this.accessories;
+      if (this.selectedTab === 'all') return this.allProducts;
+      return this.allProducts.filter((product) => product.category === this.selectedTab);
     },
 
     sortedProducts() {
@@ -128,13 +128,9 @@ export default {
   },
 
   methods: {
-    toggleModalWindow() {
-      this.isModalOpen = !this.isModalOpen;
-    },
-
-    openCard(data) {
-      this.toggleModalWindow();
-      this.modalData = data;
+    openCard(product) {
+      this.isModalOpen = true;
+      this.modalData = product;
     },
 
     closeModal() {

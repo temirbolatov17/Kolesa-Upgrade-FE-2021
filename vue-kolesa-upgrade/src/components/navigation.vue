@@ -37,10 +37,5 @@
 <script>
 export default {
   name: 'navigation',
-  data() {
-    return {
-
-    };
-  },
 };
 </script>
