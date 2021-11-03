@@ -8,7 +8,7 @@
             </div>
             <ul class="product-images__list">
                 <li class="product-images__item">
-                    <img src="../assets/img/products/hoody-beige-icon.jpg"
+                    <img src="@/assets/img/products/hoody-beige-icon.jpg"
                     alt="Толстовка бежевого цвета" width="50" height="50">
                 </li>
                 <li class="product-images__item product-images__item--active">
@@ -16,7 +16,7 @@
                     alt="Толстовка синего цвета" width="50" height="50">
                 </li>
                 <li class="product-images__item">
-                    <img src="../assets/img/products/hoody-gray-icon.jpg"
+                    <img src="@/assets/img/products/hoody-gray-icon.jpg"
                     alt="Толстовка серого цвета" width="50" height="50">
                 </li>
             </ul>
