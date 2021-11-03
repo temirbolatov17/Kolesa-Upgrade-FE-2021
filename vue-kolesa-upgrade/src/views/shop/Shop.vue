@@ -97,8 +97,8 @@ export default {
 
   methods: {
     openCard(product) {
-      this.isModalOpen = true;
       this.modalData = product;
+      this.isModalOpen = true;
     },
 
     closeModal() {

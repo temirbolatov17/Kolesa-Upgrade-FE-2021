@@ -1,36 +1,40 @@
 <template>
   <a class="user-area" href="#">
     <div class="user-area__avatar">
-      <img :src="userAvatar"
+      <img
+        :v-if="userInfo.avatarUrl"
+        :src="userInfo.avatarUrl"
       alt="Аватар пользователя">
     </div>
-    <span class="user-area__name">{{ userName }}</span>
-    <p class="user-area__balance">{{ balance }} баллов</p>
+    <span class="user-area__name">{{ userInfo.name }}</span>
+    <p class="user-area__balance"> {{ score }}</p>
   </a>
 </template>
 
 <script>
-import axios from '../../axios';
+
+import { mapState } from 'vuex';
 
 export default {
   name: 'User',
-  data() {
-    return {
-      balance: 0,
-      userAvatar: '',
-      userName: '',
-    };
+  computed: {
+    ...mapState({
+      userInfo: 'userInfo',
+    }),
+
+    score() {
+      return this.userInfo.score ? `${this.userInfo.score} баллов` : '';
+    },
   },
 
   mounted() {
-    axios.get('templates/7ZW3y5GAuIge/data')
-      .then((response) => {
-        this.userName = response.data.name;
-        this.balance = response.data.score;
-        this.userAvatar = response.data.avatarUrl;
-      }).catch((err) => {
-        console.log('Data getting error', err);
-      });
+    this.fetchUser();
+  },
+
+  methods: {
+    fetchUser() {
+      this.$store.dispatch('fetchUserInfo');
+    },
   },
 };
 </script>

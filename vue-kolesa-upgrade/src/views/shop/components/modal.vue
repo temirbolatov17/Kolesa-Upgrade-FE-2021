@@ -25,7 +25,7 @@
             <div class="choice-area__info info">
                 <h2 class="info__title">{{ product.title }}</h2>
                 <p class="info__points"> {{ product.price }} баллов</p>
-                <button class="button button--modal-order"
+                <button class="button button--modal-order" @click="order"
                 type="submit" form="order-options">Заказать</button>
                 <div class="info__balance balance">
                     <p class="balance__title">Твой баланс:</p>
@@ -108,7 +108,16 @@ export default {
     },
 
     order() {
-      this.$emit('order', this.product.cost);
+      const { score } = this.$store.state.userInfo;
+
+      if (score - this.data.price <= 0) {
+        // eslint-disable-next-line
+        alert('Недостаточно баллов');
+
+        return;
+      }
+
+      this.$store.commit('setNewScore', this.data.price);
     },
   },
 };
