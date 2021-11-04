@@ -26,7 +26,7 @@
                 <h2 class="info__title">{{ product.title }}</h2>
                 <p class="info__points"> {{ product.price }} баллов</p>
                 <button class="button button--modal-order" @click="order"
-                type="submit" form="order-options">Заказать</button>
+                type="button">Заказать</button>
                 <div class="info__balance balance">
                     <p class="balance__title">Твой баланс:</p>
                     <span class="balance__total">3 945 баллов</span>
