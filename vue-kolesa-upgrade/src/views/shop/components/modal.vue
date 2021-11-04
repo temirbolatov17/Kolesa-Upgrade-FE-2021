@@ -29,7 +29,7 @@
                 type="button">Заказать</button>
                 <div class="info__balance balance">
                     <p class="balance__title">Твой баланс:</p>
-                    <span class="balance__total">3 945 баллов</span>
+                    <span class="balance__total">{{ $store.state.userInfo.score }}</span>
                 </div>
             </div>
             <form class="choice-area__form form"
@@ -102,6 +102,11 @@ export default {
     product: Object,
   },
 
+  data() {
+    return {
+    };
+  },
+
   methods: {
     closeModal() {
       this.$emit('close');
@@ -110,14 +115,14 @@ export default {
     order() {
       const { score } = this.$store.state.userInfo;
 
-      if (score - this.data.price <= 0) {
+      if (score - this.product.price <= 0) {
         // eslint-disable-next-line
         alert('Недостаточно баллов');
 
         return;
       }
 
-      this.$store.commit('setNewScore', this.data.price);
+      this.$store.commit('setNewScore', this.product.price);
     },
   },
 };
