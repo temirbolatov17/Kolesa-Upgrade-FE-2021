@@ -28,26 +28,6 @@ export default new Vuex.Store({
             commit('updateUserInfo', data);
           }
         });
-      // axios.get('templates/-_RLsEGjof6i/data')
-      //   .then((response) => {
-      //     console.log(response.data);
-      //     this.clothes = response.data.map((product) => {
-      //       product.category = 'clothes';
-      //       return product;
-      //     });
-      //   }).catch((err) => {
-      //     console.log('Data getting error', err);
-      //   });
-      // axios.get('templates/q3OPxRyEcPvP/data')
-      //   .then((response) => {
-      //     console.log(response.data);
-      //     this.accessories = response.data.map((product) => {
-      //       product.category = 'accessories';
-      //       return product;
-      //     });
-      //   }).catch((err) => {
-      //     console.log('Data getting error', err);
-      //   });
     },
   },
 });

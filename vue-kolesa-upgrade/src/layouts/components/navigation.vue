@@ -40,30 +40,36 @@ export default {
           label: 'Kolesa Shop',
           isExact: false,
         },
-        // {
-        //   link: '#',
-        //   label: 'Картина компании',
-        // },
-        // {
-        //   link: '#',
-        //   label: 'Новости',
-        // },
-        // {
-        //   link: '#',
-        //   label: 'Education',
-        // },
-        // {
-        //   link: '#',
-        //   label: 'Guidlines',
-        // },
-        // {
-        //   link: '#',
-        //   label: 'Библиотека',
-        // },
-        // {
-        //   link: '#',
-        //   label: 'FAQ',
-        // },
+        {
+          link: '/picture',
+          label: 'Картина компании',
+          isExact: false,
+        },
+        {
+          link: '/news',
+          label: 'Новости',
+          isExact: false,
+        },
+        {
+          link: '/education',
+          label: 'Education',
+          isExact: false,
+        },
+        {
+          link: '/guidline',
+          label: 'Guidlines',
+          isExact: false,
+        },
+        {
+          link: '/library',
+          label: 'Библиотека',
+          isExact: false,
+        },
+        {
+          link: '/faq',
+          label: 'FAQ',
+          isExact: false,
+        },
       ],
     };
   },

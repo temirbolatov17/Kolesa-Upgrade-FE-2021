@@ -18,9 +18,9 @@ import { mapState } from 'vuex';
 export default {
   name: 'User',
   computed: {
-    ...mapState({
-      userInfo: 'userInfo',
-    }),
+    ...mapState([
+      'userInfo',
+    ]),
 
     score() {
       return this.userInfo.score ? `${this.userInfo.score} баллов` : '';
