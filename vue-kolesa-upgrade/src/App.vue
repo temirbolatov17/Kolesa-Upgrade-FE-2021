@@ -20,127 +20,41 @@
               <h1 class="visually-hidden">Kolesa Shop для сотрудников компании</h1>
               <navigation>
               </navigation>
-              <section class="promo promo--mb24px">
-                  <img class="promo__img"
-                  src="../src/assets/img/promo/promo-desktop.jpg"
-                  width="940" height="335" alt="Промо летней распродажи">
-              </section>
-              <hot-buttons>
-              </hot-buttons>
-              <section class="main-catalog">
-                  <tabs
-                    @sorttabs="sortTabs">
-                  </tabs>
-                  <ul class="product-list">
-                    <product-card
-                      v-for="product in sortedProducts"
-                      :key="product.id"
-                      :product="product"
-                      @openCard="openCard">
-                    </product-card>
-                  </ul>
-              </section>
+
+              <router-view>
+
+              </router-view>
           </main>
           <page-footer>
           </page-footer>
-          <modal-card
-            :product='modalData'
-            :is-open="isModalOpen"
-            @close="closeModal">
-          </modal-card>
       </div>
   </body>
   </div>
 </template>
 
 <script>
-import axios from './axios';
-import modalCard from './components/modal.vue';
-import searchForm from './components/search.vue';
-import userArea from './components/user.vue';
-import navigation from './components/navigation.vue';
-import hotButtons from './components/hot-buttons.vue';
-import tabs from './components/tabs.vue';
-import productCard from './components/product-card.vue';
-import pageFooter from './components/footer.vue';
+import searchForm from './layouts/components/search.vue';
+import userArea from './layouts/components/user.vue';
+import navigation from './layouts/components/navigation.vue';
+import pageFooter from './layouts/components/footer.vue';
 
 export default {
   name: 'App',
 
   components: {
-    modalCard,
     searchForm,
     userArea,
     navigation,
-    hotButtons,
-    tabs,
-    productCard,
     pageFooter,
   },
 
   data() {
     return {
-      modalData: {},
-      isModalOpen: false,
       search: '',
-      selectedTab: 'all',
-      clothes: [],
-      accessories: [],
     };
   },
 
-  mounted() {
-    axios.get('templates/-_RLsEGjof6i/data')
-      .then((response) => {
-        console.log(response.data);
-        this.clothes = response.data.map((product) => {
-          product.category = 'clothes';
-          return product;
-        });
-      }).catch((err) => {
-        console.log('Data getting error', err);
-      });
-    axios.get('templates/q3OPxRyEcPvP/data')
-      .then((response) => {
-        console.log(response.data);
-        this.accessories = response.data.map((product) => {
-          product.category = 'accessories';
-          return product;
-        });
-      }).catch((err) => {
-        console.log('Data getting error', err);
-      });
-  },
-
-  computed: {
-    allProducts() {
-      return [...this.clothes, ...this.accessories];
-    },
-
-    filteredProducts() {
-      if (this.selectedTab === 'all') return this.allProducts;
-      return this.allProducts.filter((product) => product.category === this.selectedTab);
-    },
-
-    sortedProducts() {
-      return [...this.filteredProducts].sort((product) => (product.isNew ? -1 : 1));
-    },
-  },
-
   methods: {
-    openCard(product) {
-      this.isModalOpen = true;
-      this.modalData = product;
-    },
-
-    closeModal() {
-      this.isModalOpen = false;
-    },
-
-    sortTabs(selectedTab) {
-      this.selectedTab = selectedTab;
-    },
-
     setSearch(e) {
       this.search = e.target.value;
     },
@@ -150,4 +64,45 @@ export default {
 
 <style lang="scss">
   @import 'components/style.scss';
+
+  .loader {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .lds-dual-ring {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+      }
+
+      .lds-dual-ring::after {
+        content: " ";
+        display: block;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border-radius: 50%;
+        border: 6px solid #fff;
+        border-color: #fff transparent #fff transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+      }
+      @keyframes lds-dual-ring {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
 </style>

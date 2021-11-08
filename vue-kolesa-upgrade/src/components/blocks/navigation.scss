@@ -2,8 +2,17 @@
     &__item {
         margin-bottom: 26px;
 
+        
+    }
+
+    &__link {
+        text-decoration: none;
+
+        @include font-set(16px, 24px, 400);
+
         &--active {
             position: relative;
+            font-weight: 600;
 
             &::before {
                 content: '';
@@ -16,21 +25,6 @@
                 top: -6px;
                 left: -8px;
             }
-        }
-
-        &--active a {
-            font-weight: 600;
-        }
-    }
-
-    &__link {
-        text-decoration: none;
-
-        @include font-set(16px, 24px, 400);
-
-        &:focus {
-            color: $red-primary;
-            outline: none;
         }
 
         &:hover {

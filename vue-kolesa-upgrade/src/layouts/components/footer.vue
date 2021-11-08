@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import icons from '@/components/icons.vue';
+import icons from './icons.vue';
 
 export default {
   name: 'Page-footer',

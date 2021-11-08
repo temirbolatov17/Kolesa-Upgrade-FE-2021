@@ -8,7 +8,7 @@
             </div>
             <ul class="product-images__list">
                 <li class="product-images__item">
-                    <img src="../assets/img/products/hoody-beige-icon.jpg"
+                    <img src="@/assets/img/products/hoody-beige-icon.jpg"
                     alt="Толстовка бежевого цвета" width="50" height="50">
                 </li>
                 <li class="product-images__item product-images__item--active">
@@ -16,7 +16,7 @@
                     alt="Толстовка синего цвета" width="50" height="50">
                 </li>
                 <li class="product-images__item">
-                    <img src="../assets/img/products/hoody-gray-icon.jpg"
+                    <img src="@/assets/img/products/hoody-gray-icon.jpg"
                     alt="Толстовка серого цвета" width="50" height="50">
                 </li>
             </ul>
@@ -25,11 +25,11 @@
             <div class="choice-area__info info">
                 <h2 class="info__title">{{ product.title }}</h2>
                 <p class="info__points"> {{ product.price }} баллов</p>
-                <button class="button button--modal-order"
-                type="submit" form="order-options">Заказать</button>
+                <button class="button button--modal-order" @click="order"
+                type="button">Заказать</button>
                 <div class="info__balance balance">
                     <p class="balance__title">Твой баланс:</p>
-                    <span class="balance__total">3 945 баллов</span>
+                    <span class="balance__total">{{ $store.state.userInfo.score }}</span>
                 </div>
             </div>
             <form class="choice-area__form form"
@@ -102,13 +102,27 @@ export default {
     product: Object,
   },
 
+  data() {
+    return {
+    };
+  },
+
   methods: {
     closeModal() {
       this.$emit('close');
     },
 
     order() {
-      this.$emit('order', this.product.cost);
+      const { score } = this.$store.state.userInfo;
+
+      if (score - this.product.price <= 0) {
+        // eslint-disable-next-line
+        alert('Недостаточно баллов');
+
+        return;
+      }
+
+      this.$store.commit('setNewScore', this.product.price);
     },
   },
 };

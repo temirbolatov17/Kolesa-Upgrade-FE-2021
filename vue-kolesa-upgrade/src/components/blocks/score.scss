@@ -1,0 +1,25 @@
+.score {
+    &__breadcrumbs {
+        color: $blue-primary;
+        margin-bottom: 24px;
+    }
+
+    &__link {
+        @include font-set(14px, 24px, 400);
+        @include link-reset($blue-primary);
+    }
+
+    &__title {
+        @include font-set(20px, 32px, 600);
+        margin-bottom: 16px;
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(3, 300px);
+        row-gap: 24px;
+        column-gap: 24px;
+        list-style: none;
+        margin-bottom: 64px;
+    }
+}

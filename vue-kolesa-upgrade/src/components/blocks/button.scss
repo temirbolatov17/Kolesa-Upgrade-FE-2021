@@ -23,6 +23,11 @@
         display: none;
     }
 
+    &--score-card {
+        padding: 10px;
+        margin-top: auto;
+    }
+
     &:focus {
         box-shadow: 0 2px 4px transparentize($black-primary, 0.3);
         outline: none;
